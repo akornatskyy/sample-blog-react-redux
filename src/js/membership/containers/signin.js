@@ -14,6 +14,6 @@ export default connect(
         };
     },
     dispatch => ({
-        onSubmit: (credentials) => dispatch(signin(credentials))
+        onSubmit: m => dispatch(signin(m))
     })
 )(SignIn);
