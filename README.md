@@ -12,7 +12,6 @@ architecture inspired by
 
 Install dependencies with [npm](https://www.npmjs.com):
 
-    npm set progress=false
     npm i
 
 ## Run
@@ -25,7 +24,7 @@ Serve files with a web server with hot loading:
 
 Build files (into `dist/`):
 
-    npm run build
+    NODE_ENV=prod npm run build
 
 Open your browser at [http://localhost:8080](http://localhost:8080),
 use *demo* / *password*.
