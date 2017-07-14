@@ -2,10 +2,10 @@
   "name": "sample-blog-react-redux",
   "version": "0.0.1",
   "description": "A simple blog written using react and redux.",
-  "main": "index.js",
+  "main": "src/js/index.js",
   "scripts": {
-    "start": "node server.js",
-    "lint": "eslint server.js webpack.config.js src/ --ext .js",
+    "start": "webpack-dev-server",
+    "lint": "eslint webpack.config.js src/ --ext .js",
     "build": "rm -rf dist && webpack -p --colors",
     "test": "jest",
     "test:watch": "jest --watch"
@@ -51,7 +51,6 @@
     "eslint": "^4.2.0",
     "eslint-config-google": "^0.9.1",
     "eslint-plugin-react": "^7.0.1",
-    "express": "^4.15.3",
     "extract-text-webpack-plugin": "^3.0.0",
     "html-webpack-plugin": "^2.28.0",
     "jest": "^20.0.4",
@@ -62,7 +61,6 @@
     "sass-loader": "^6.0.5",
     "style-loader": "^0.18.2",
     "webpack": "^3.3.0",
-    "webpack-dev-middleware": "^1.10.2",
-    "webpack-hot-middleware": "^2.18.0"
+    "webpack-dev-server": "^2.5.1"
   }
 }
