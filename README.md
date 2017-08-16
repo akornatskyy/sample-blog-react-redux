@@ -14,6 +14,8 @@ Install dependencies with [npm](https://www.npmjs.com):
 
     npm i
 
+... or use docker [image](https://github.com/akornatskyy/sample-blog-react-redux/tree/master/docker) or see [online](https://akornatskyy.github.io/sample-blog-react-redux/).
+
 ## Run
 
 Serve files with a web server with hot loading:
