@@ -10,7 +10,7 @@ RUN set -ex \
         nodejs \
         git \
     \
-    && git clone https://github.com/akornatskyy/sample-blog-react-redux.git src \
+    && git clone --depth=1 https://github.com/akornatskyy/sample-blog-react-redux.git src \
     \
     && cd src \
     && npm i \
@@ -18,10 +18,10 @@ RUN set -ex \
     && npm run build \
     && mv dist/* /usr/share/nginx/html \
     \
-    && cp nginx.conf /etc/nginx/nginx.conf \
-    \
     && rm -rf /src ~/.npm /tmp/npm-* \
     && apk del .build-deps
+
+COPY nginx.conf /etc/nginx/nginx.conf
 
 EXPOSE 80
 
