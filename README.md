@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/akornatskyy/sample-blog-react-redux.svg?branch=master)](https://travis-ci.org/akornatskyy/sample-blog-react-redux)
 [![Code Climate](https://codeclimate.com/github/akornatskyy/sample-blog-react-redux/badges/gpa.svg)](https://codeclimate.com/github/akornatskyy/sample-blog-react-redux)
+[![Dependency Status](https://gemnasium.com/badges/github.com/akornatskyy/sample-blog-react-redux.svg)](https://gemnasium.com/github.com/akornatskyy/sample-blog-react-redux)
 
 A simple blog written using [react](http://facebook.github.io/react/) and
 [redux](https://github.com/reactjs/redux) demonstrating unidirectional dataflow
