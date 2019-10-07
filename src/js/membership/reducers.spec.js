@@ -1,4 +1,4 @@
-import {LOCATION_CHANGE} from 'react-router-redux';
+import {LOCATION_CHANGE} from 'connected-react-router';
 
 import reducers from './reducers';
 import * as types from './constants';

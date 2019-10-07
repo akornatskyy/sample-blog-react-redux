@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Well, FormGroup, FormControl, Button, Alert} from 'react-bootstrap';
-import {Link} from 'react-router';
+import {Link} from 'react-router-dom';
 
 import Errors from '../../shared/components/errors';
 
@@ -57,7 +57,7 @@ class CommentWell extends React.Component {
                 <Well>
                     <h4>Leave a Comment:</h4>
                     <form autoComplete="off"
-                        onSubmit={!disabled && this.handleSubmit}>
+                        onSubmit={!disabled ? this.handleSubmit : undefined}>
                         <FormGroup validationState={errors.message && 'error'}>
                             <FormControl rows="3" disabled={disabled}
                                 inputRef={ ref => {

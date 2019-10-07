@@ -1,10 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import {Button, FormGroup} from 'react-bootstrap';
 import {shallow, mount} from 'enzyme';
+import {Provider} from 'react-redux';
+import {ConnectedRouter as Router} from 'connected-react-router';
+import {createMemoryHistory} from 'history';
 
 import SignIn from './signin';
-
 
 const setup = (overrides, state) => {
     const props = Object.assign({
@@ -26,13 +27,11 @@ const setup = (overrides, state) => {
                     dispatch: () => {},
                     getState: () => state
                 }
-            },
-            childContextTypes: {
-                store: PropTypes.object.isRequired
             }
         }
     };
 };
+
 
 describe('membership component', () => {
     describe('signin', () => {
@@ -51,7 +50,7 @@ describe('membership component', () => {
             const c = shallow(<SignIn {...props} />);
 
             expect(c.find(Button).props().disabled).toBe(true);
-            expect(c.find('form').props().onSubmit).toBe(false);
+            expect(c.find('form').props().onSubmit).toBeUndefined();
         });
 
         it('resets form group validation state', () => {
@@ -95,8 +94,15 @@ describe('membership component', () => {
                     }
                 }
             );
+            const history = createMemoryHistory();
 
-            const c = mount(<SignIn {...props} />, options);
+            const c = mount(
+                <Provider store={options.context.store}>
+                    <Router history={history}>
+                        <SignIn {...props} />
+                    </Router>
+                </Provider>
+            );
 
             c.find('form').simulate('submit');
 

@@ -1,37 +1,40 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {createStore, compose, applyMiddleware} from 'redux';
-import thunk from 'redux-thunk';
-import {Router, useRouterHistory} from 'react-router';
-import {createHistory} from 'history';
-import {routerMiddleware, syncHistoryWithStore} from 'react-router-redux';
+import {createHashHistory as createHistory} from 'history';
+import {routerMiddleware, ConnectedRouter} from 'connected-react-router';
 import {Provider} from 'react-redux';
+import thunk from 'redux-thunk';
 
-import reducers from './reducers';
+import createRootReducer from './reducers';
 import routes from './routes';
 import {dailyQuote} from './shared/actions';
 
 import './app.scss';
 
-const history = useRouterHistory(createHistory)({
-    basename: window.location.pathname
-});
+const history = createHistory();
 
-const enhancer = applyMiddleware(
-    routerMiddleware(history),
-    thunk);
-const store = createStore(reducers, {},
-    window.devToolsExtension ?
-        compose(enhancer, window.devToolsExtension()) :
-        enhancer);
+function configureStore(preloadedState) {
+    return createStore(
+        createRootReducer(history),
+        preloadedState,
+        compose(
+            applyMiddleware(
+                routerMiddleware(history),
+                thunk
+            ),
+        ),
+    );
+}
 
+const store = configureStore();
 store.dispatch(dailyQuote());
 
 ReactDOM.render(
     <Provider store={store}>
-        <Router history={syncHistoryWithStore(history, store)}>
+        <ConnectedRouter history={history}>
             {routes}
-        </Router>
+        </ConnectedRouter>
     </Provider>,
     document.getElementById('root')
 );

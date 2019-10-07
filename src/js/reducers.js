@@ -1,9 +1,14 @@
 import {combineReducers} from 'redux';
-import {routerReducer as routing} from 'react-router-redux';
+import {connectRouter} from 'connected-react-router';
 
 import membership from './membership/reducers';
 import posts from './posts/reducers';
 import shared from './shared/reducers';
 
 
-export default combineReducers({membership, posts, shared, routing});
+const createRootReducer = (history) => combineReducers({
+    router: connectRouter(history),
+    membership, posts, shared
+});
+
+export default createRootReducer;

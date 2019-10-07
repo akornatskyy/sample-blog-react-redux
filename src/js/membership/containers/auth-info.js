@@ -7,8 +7,7 @@ import AuthInfo from '../components/auth-info';
 export default connect(
     state => ({
         user: state.membership.auth.user,
-        show: state.routing.locationBeforeTransitions.pathname.match(
-            /^\/?signin$/) === null
+        show: state.router.location.pathname.match(/^\/?signin$/) === null
     }),
     dispatch => ({
         onSignout: () => dispatch(signout())

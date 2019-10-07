@@ -1,4 +1,4 @@
-import {push} from 'react-router-redux';
+import {push} from 'connected-react-router';
 
 import api from 'api';
 
@@ -14,26 +14,23 @@ import {
 
 export const searchPosts = (q = '', page = 0) => (dispatch, getState) => {
     const state = getState();
-    const locationBeforeTransitions = state.routing.locationBeforeTransitions;
     const posts = state.posts.posts;
-    const location = {query: {}};
+    const location = {};
+    const query = new URLSearchParams();
 
     if (q == '') {
         location.pathname = '/';
     } else {
         location.pathname = '/posts';
-        location.query.q = q;
+        query.set('q', q);
     }
 
     if (page > 0) {
-        location.query.page = page;
+        query.set('page', page);
     }
 
-    if (location.pathname != locationBeforeTransitions.pathname ||
-            location.query.q != locationBeforeTransitions.query.q ||
-            location.query.page != locationBeforeTransitions.query.page) {
-        dispatch(push(location));
-    }
+    location.search = query.toString();
+    dispatch(push(location));
 
     if (posts.pending || posts.q == q && posts.page == page) {
         return null;
@@ -52,17 +49,14 @@ export const searchPosts = (q = '', page = 0) => (dispatch, getState) => {
 };
 
 export const getPost = slug => (dispatch, getState) => {
-    const post = getState().posts.post;
-    const pathname = '/post/' + slug;
-
     const navigate = () => {
-        const routing = getState().routing;
-
-        if (pathname !== routing.locationBeforeTransitions.pathname) {
+        const pathname = '/post/' + slug;
+        if (pathname !== getState().router.location.pathname) {
             dispatch(push(pathname));
         }
     };
 
+    const post = getState().posts.post;
     if (post.pending || post.slug === slug) {
         navigate();
         return null;

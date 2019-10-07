@@ -1,40 +1,32 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import {Grid} from 'react-bootstrap';
-import {Route} from 'react-router';
+import {Route, Switch} from 'react-router';
 
 import AuthInfo from './membership/containers/auth-info';
-import SignIn from './membership/containers/signin';
-import SignUp from './membership/containers/signup';
-
-import Posts from './posts/containers/posts';
-import Post from './posts/containers/post';
-
 import Footer from './shared/components/footer';
 import Header from './shared/components/header';
 
+import Posts from './posts/containers/posts';
+import Post from './posts/containers/post';
+import SignIn from './membership/containers/signin';
+import SignUp from './membership/containers/signup';
 
-const App = ({children}) => (
+
+const App = () => (
     <Grid>
         <Header>
             <AuthInfo />
         </Header>
-        {children}
+        <Switch>
+            <Route exact path="/" component={Posts} />
+            <Route exact path="/posts" component={Posts} />
+            <Route exact path="/post/:slug" component={Post} />
+            <Route exact path="/signin" component={SignIn} />
+            <Route exact path="/signup" component={SignUp} />
+        </Switch>
         <hr />
         <Footer />
     </Grid>
 );
 
-App.propTypes = {
-    children: PropTypes.element.isRequired
-};
-
-export default (
-    <Route component={App}>
-        <Route path="/" component={Posts} />
-        <Route path="posts" component={Posts} />
-        <Route path="post/:slug" component={Post} />
-        <Route path="signin" component={SignIn} />
-        <Route path="signup" component={SignUp} />
-    </Route>
-);
+export default (<Route path="/" component={App} />);

@@ -20,7 +20,7 @@ describe('membership component', () => {
                 <AuthInfo {...props} />
             );
 
-            expect(c.node).toBeNull();
+            expect(c.getElement()).toBeNull();
         });
 
         it('shows signin link', () => {

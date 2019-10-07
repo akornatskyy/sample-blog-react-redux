@@ -17,7 +17,7 @@ class Post extends React.Component {
 
     componentDidMount() {
         if (this.props.onGetPost) {
-            this.props.onGetPost(this.props.routeParams.slug);
+            this.props.onGetPost(this.props.match.params.slug);
         }
     }
 
@@ -72,8 +72,10 @@ Post.propTypes = {
     }),
     errors: PropTypes.object,
     authenticated: PropTypes.bool,
-    routeParams: PropTypes.shape({
-        slug: PropTypes.string.isRequired
+    match: PropTypes.shape({
+        params: PropTypes.shape({
+            slug: PropTypes.string.isRequired
+        }),
     }),
     onGetPost: PropTypes.func,
     onAddComment: PropTypes.func

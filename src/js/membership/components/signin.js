@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Link} from 'react-router';
+import {Link} from 'react-router-dom';
 import {Well, FormGroup, FormControl, Button} from 'react-bootstrap';
 
 import Errors from '../../shared/components/errors';
@@ -29,7 +29,6 @@ class SignIn extends React.Component {
 
     render() {
         const {pending, errors} = this.props;
-
         return (
             <Layout sidebar={<SignUpWell/>}>
                 <h1>Sign In</h1>
@@ -42,7 +41,7 @@ class SignIn extends React.Component {
                 <Errors.Summary />
                 <Well>
                     <form autoComplete="off"
-                        onSubmit={!pending && this.handleSubmit}>
+                        onSubmit={!pending ? this.handleSubmit : undefined}>
                         <FormGroup validationState={errors.username && 'error'}>
                             <FormControl
                                 inputRef={ref => {

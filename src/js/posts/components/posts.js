@@ -17,9 +17,13 @@ class Posts extends React.Component {
         const {onSearch} = this.props;
 
         if (onSearch) {
-            const {q = '', page = 0} = this.props.location.query;
-
-            onSearch(q, parseInt(page));
+            const state = this.props.location.state;
+            if (!state) {
+                onSearch('', 0);
+            } else {
+                const {q = '', page = 0} = state;
+                onSearch(q, parseInt(page));
+            }
         }
     }
 
@@ -27,8 +31,7 @@ class Posts extends React.Component {
         const {q, pending, pager, user, onSearch, onItem} = this.props;
         const sidebar = (
             <div>
-                <SearchPostsWell q={q} pending={pending}
-                    onSubmit={onSearch} />
+                <SearchPostsWell q={q} pending={pending} onSubmit={onSearch} />
                 <SignUpWell user={user} />
             </div>
         );
@@ -52,7 +55,7 @@ class Posts extends React.Component {
 
 Posts.propTypes = {
     location: PropTypes.shape({
-        query: PropTypes.shape({
+        state: PropTypes.shape({
             q: PropTypes.string,
             page: PropTypes.string
         })
