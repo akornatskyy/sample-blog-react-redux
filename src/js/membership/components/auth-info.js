@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {LinkContainer} from 'react-router-bootstrap';
-import {NavItem} from 'react-bootstrap';
+import {NavLink} from 'react-bootstrap';
 
 
 const AuthInfo = ({user, show, onSignout}) => {
@@ -12,12 +12,12 @@ const AuthInfo = ({user, show, onSignout}) => {
     if (!user) {
         return (
             <LinkContainer to="/signin">
-                <NavItem>Sign in</NavItem>
+                <NavLink>Sign in</NavLink>
             </LinkContainer>
         );
     }
 
-    return <NavItem onClick={onSignout}>Sign out</NavItem>;
+    return <NavLink onClick={onSignout}>Sign out</NavLink>;
 };
 
 AuthInfo.propTypes = {

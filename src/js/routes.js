@@ -1,5 +1,5 @@
 import React from 'react';
-import {Grid} from 'react-bootstrap';
+import {Container} from 'react-bootstrap';
 import {Route, Switch} from 'react-router';
 
 import AuthInfo from './membership/containers/auth-info';
@@ -13,7 +13,7 @@ import SignUp from './membership/containers/signup';
 
 
 const App = () => (
-    <Grid>
+    <Container>
         <Header>
             <AuthInfo />
         </Header>
@@ -26,7 +26,7 @@ const App = () => (
         </Switch>
         <hr />
         <Footer />
-    </Grid>
+    </Container>
 );
 
 export default (<Route path="/" component={App} />);

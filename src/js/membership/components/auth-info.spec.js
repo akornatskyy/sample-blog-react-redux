@@ -1,7 +1,7 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 
-import {NavItem} from 'react-bootstrap';
+import {NavLink} from 'react-bootstrap';
 
 import AuthInfo from './auth-info';
 
@@ -32,7 +32,7 @@ describe('membership component', () => {
                 <AuthInfo {...props} />
             );
 
-            expect(c.find(NavItem).contains('Sign in')).toBe(true);
+            expect(c.find(NavLink).contains('Sign in')).toBe(true);
         });
 
         it('shows signout link', () => {
@@ -45,7 +45,7 @@ describe('membership component', () => {
                 <AuthInfo {...props} />
             );
 
-            expect(c.find(NavItem).contains('Sign out')).toBe(true);
+            expect(c.find(NavLink).contains('Sign out')).toBe(true);
         });
     });
 });

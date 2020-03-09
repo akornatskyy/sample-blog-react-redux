@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, FormGroup} from 'react-bootstrap';
+import {Button, FormControl} from 'react-bootstrap';
 import {shallow, mount} from 'enzyme';
 import {Provider} from 'react-redux';
 import {ConnectedRouter as Router} from 'connected-react-router';
@@ -53,18 +53,18 @@ describe('membership component', () => {
             expect(c.find('form').props().onSubmit).toBeUndefined();
         });
 
-        it('resets form group validation state', () => {
+        it('resets form validation state', () => {
             const props = setup({errors: {}});
 
             const c = shallow(<SignIn {...props} />);
-            const formGroups = c.find(FormGroup);
+            const formControls = c.find(FormControl);
 
-            expect(formGroups).toHaveLength(2);
-            formGroups.forEach(fg =>
-                expect(fg.props().validationState).toBeUndefined());
+            expect(formControls).toHaveLength(2);
+            formControls.forEach(fg =>
+                expect(fg.props().isInvalid).toBe(false));
         });
 
-        it('shows form group error', () => {
+        it('shows form error', () => {
             const props = setup({
                 errors: {
                     username: 'x',
@@ -73,11 +73,11 @@ describe('membership component', () => {
             });
 
             const c = shallow(<SignIn {...props} />);
-            const formGroups = c.find(FormGroup);
+            const formControls = c.find(FormControl);
 
-            expect(formGroups).toHaveLength(2);
-            formGroups.forEach(fg =>
-                expect(fg.props().validationState).toBe('error'));
+            expect(formControls).toHaveLength(2);
+            formControls.forEach(fg =>
+                expect(fg.props().isInvalid).toBe(true));
         });
 
         it('handles submit', () => {
