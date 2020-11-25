@@ -1,15 +1,13 @@
 import React from 'react';
-import {shallow} from 'enzyme';
+import {render, screen} from '@testing-library/react';
 
 import AccessWarn from './access-warn';
 
 
 describe('membership component access-warn', () => {
     it('renders self', () => {
-        const c = shallow(
-            <AccessWarn />
-        );
+        render(<AccessWarn />);
 
-        expect(c.find('hr')).toHaveLength(1);
+        expect(screen.getByText(/This is a private system/)).toBeVisible();
     });
 });

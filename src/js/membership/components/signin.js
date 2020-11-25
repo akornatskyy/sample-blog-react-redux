@@ -28,7 +28,7 @@ class SignIn extends React.Component {
     }
 
     render() {
-        const {pending, errors} = this.props;
+        const {pending, errors = {}} = this.props;
         return (
             <Layout sidebar={<SignUpWell/>}>
                 <h1>Sign In</h1>
@@ -70,9 +70,9 @@ class SignIn extends React.Component {
 }
 
 SignIn.propTypes = {
-    pending: PropTypes.bool.isRequired,
-    errors: PropTypes.object.isRequired,
-    onSubmit: PropTypes.func.isRequired,
+    pending: PropTypes.bool,
+    errors: PropTypes.object,
+    onSubmit: PropTypes.func,
 };
 
 SignIn.childContextTypes = {

@@ -1,51 +1,27 @@
 import React from 'react';
-import {shallow} from 'enzyme';
-
-import {NavLink} from 'react-bootstrap';
+import {MemoryRouter as Router} from 'react-router-dom';
+import {render, screen} from '@testing-library/react';
 
 import AuthInfo from './auth-info';
-
-
-const initialProps = {
-    show: false,
-    onSignout: () => {}
-};
 
 describe('membership component', () => {
     describe('auth-info', () => {
         it('is not rendered if not shown', () => {
-            const props = Object.assign({}, initialProps);
+            const {container} = render(<AuthInfo />);
 
-            const c = shallow(
-                <AuthInfo {...props} />
-            );
-
-            expect(c.getElement()).toBeNull();
+            expect(container.firstChild).toBeNull();
         });
 
         it('shows signin link', () => {
-            const props = Object.assign({}, initialProps, {
-                show: true
-            });
+            render(<Router><AuthInfo show={true} /></Router>);
 
-            const c = shallow(
-                <AuthInfo {...props} />
-            );
-
-            expect(c.find(NavLink).contains('Sign in')).toBe(true);
+            expect(screen.getByText('Sign in')).toBeVisible();
         });
 
         it('shows signout link', () => {
-            const props = Object.assign({}, initialProps, {
-                show: true,
-                user: {}
-            });
+            render(<Router><AuthInfo show={true} user={{}} /></Router>);
 
-            const c = shallow(
-                <AuthInfo {...props} />
-            );
-
-            expect(c.find(NavLink).contains('Sign out')).toBe(true);
+            expect(screen.getByText('Sign out')).toBeVisible();
         });
     });
 });

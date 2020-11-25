@@ -1,115 +1,62 @@
 import React from 'react';
-import {Button, FormControl} from 'react-bootstrap';
-import {shallow, mount} from 'enzyme';
 import {Provider} from 'react-redux';
-import {ConnectedRouter as Router} from 'connected-react-router';
 import {createMemoryHistory} from 'history';
+import {ConnectedRouter as Router} from 'connected-react-router';
+import {render as rtlRender, screen, fireEvent} from '@testing-library/react';
 
 import SignIn from './signin';
 
-const setup = (overrides, state) => {
-    const props = Object.assign({
-        pending: false,
-        errors: {},
-        onSubmit: () => {}
-    }, overrides);
-
-    if (!state) {
-        return props;
-    }
-
-    return {
-        props,
-        options: {
-            context: {
-                store: {
-                    subscribe: () => {},
-                    dispatch: () => {},
-                    getState: () => state
-                }
-            }
-        }
+function render(ui, initialState) {
+    const state = {shared: {}, ...initialState};
+    const store = {
+        subscribe: () => () => {},
+        dispatch: () => {},
+        getState: () => state,
     };
-};
-
+    const history = createMemoryHistory();
+    const wrapper = ({children}) => (
+        <Provider store={store}>
+            <Router history={history}>
+                {children}
+            </Router>
+        </Provider>
+    );
+    return rtlRender(ui, {wrapper});
+}
 
 describe('membership component', () => {
     describe('signin', () => {
         it('renders correctly', () => {
-            const props = setup();
+            render(<SignIn />);
 
-            const c = shallow(<SignIn {...props} />);
-
-            expect(c.find(Button).props().disabled).toBe(false);
-            expect(c.find('form').props().onSubmit).toBeInstanceOf(Function);
+            expect(screen.getByRole('button')).toBeEnabled();
         });
 
-        it('disables button and form submit', () => {
-            const props = setup({pending: true});
+        it('disables button if pending', () => {
+            render(<SignIn pending={true} />);
 
-            const c = shallow(<SignIn {...props} />);
-
-            expect(c.find(Button).props().disabled).toBe(true);
-            expect(c.find('form').props().onSubmit).toBeUndefined();
-        });
-
-        it('resets form validation state', () => {
-            const props = setup({errors: {}});
-
-            const c = shallow(<SignIn {...props} />);
-            const formControls = c.find(FormControl);
-
-            expect(formControls).toHaveLength(2);
-            formControls.forEach(fg =>
-                expect(fg.props().isInvalid).toBe(false));
+            expect(screen.getByRole('button')).toBeDisabled();
         });
 
         it('shows form error', () => {
-            const props = setup({
-                errors: {
-                    username: 'x',
-                    password: 'x'
-                }
-            });
+            const errors = {
+                username: 'Name error',
+                password: 'Password error'
+            };
 
-            const c = shallow(<SignIn {...props} />);
-            const formControls = c.find(FormControl);
+            render(<SignIn errors={errors} />);
 
-            expect(formControls).toHaveLength(2);
-            formControls.forEach(fg =>
-                expect(fg.props().isInvalid).toBe(true));
+            expect(screen.getByText(errors.username)).toBeVisible();
+            expect(screen.getByText(errors.password)).toBeVisible();
         });
 
         it('handles submit', () => {
-            const {props, options} = setup(
-                {
-                    onSubmit: jest.fn()
-                },
-                {
-                    shared: {
-                        quote: {
-                            message: 'm',
-                            author: 'a'
-                        }
-                    }
-                }
-            );
-            const history = createMemoryHistory();
+            const onSubmit = jest.fn();
 
-            const c = mount(
-                <Provider store={options.context.store}>
-                    <Router history={history}>
-                        <SignIn {...props} />
-                    </Router>
-                </Provider>
-            );
+            render(<SignIn onSubmit={onSubmit} />);
 
-            c.find('form').simulate('submit');
-
-            expect(props.onSubmit).toBeCalledWith({
-                username: '',
-                password: ''
-            });
+            fireEvent.click(screen.getByRole('button'));
+            expect(onSubmit).toBeCalled();
         });
     });
 });

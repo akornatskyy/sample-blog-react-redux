@@ -22,8 +22,8 @@ const AuthInfo = ({user, show, onSignout}) => {
 
 AuthInfo.propTypes = {
     user: PropTypes.object,
-    show: PropTypes.bool.isRequired,
-    onSignout: PropTypes.func.isRequired
+    show: PropTypes.bool,
+    onSignout: PropTypes.func,
 };
 
 export default AuthInfo;
