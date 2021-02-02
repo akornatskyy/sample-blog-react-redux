@@ -26,7 +26,7 @@ Serve files with a web server with hot loading:
 
 Build files (into `dist/`):
 
-    NODE_ENV=prod npm run build
+    npm run build -- --mode=production
 
 Open your browser at [http://localhost:8080](http://localhost:8080),
 use *demo* / *password*.
