@@ -44,7 +44,7 @@
     "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.13",
+    "@babel/core": "^7.12.16",
     "@babel/preset-env": "^7.12.13",
     "@babel/preset-react": "^7.12.13",
     "@testing-library/jest-dom": "^5.11.9",
