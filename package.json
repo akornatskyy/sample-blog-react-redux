@@ -54,7 +54,7 @@
     "babel-loader": "^8.2.2",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
     "css-loader": "^5.2.6",
-    "eslint": "^7.28.0",
+    "eslint": "^7.29.0",
     "eslint-config-google": "^0.14.0",
     "eslint-plugin-react": "^7.24.0",
     "html-webpack-plugin": "^5.3.1",
