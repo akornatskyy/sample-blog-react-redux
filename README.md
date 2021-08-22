@@ -1,6 +1,6 @@
 # React Blog Sample
 
-[![Build Status](https://travis-ci.org/akornatskyy/sample-blog-react-redux.svg?branch=master)](https://travis-ci.org/akornatskyy/sample-blog-react-redux)
+[![tests](https://github.com/akornatskyy/sample-blog-react-redux/actions/workflows/tests.yml/badge.svg)](https://github.com/akornatskyy/sample-blog-react-redux/actions/workflows/tests.yml)
 [![Code Climate](https://codeclimate.com/github/akornatskyy/sample-blog-react-redux/badges/gpa.svg)](https://codeclimate.com/github/akornatskyy/sample-blog-react-redux)
 
 A simple blog written using [react](http://facebook.github.io/react/) and
