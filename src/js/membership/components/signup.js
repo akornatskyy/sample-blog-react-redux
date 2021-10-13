@@ -45,7 +45,7 @@ class SignUp extends React.Component {
                     <Card.Body>
                         <form autoComplete="off"
                             onSubmit={!pending ? this.handleSubmit : undefined}>
-                            <FormGroup>
+                            <FormGroup className="mb-3">
                                 <FormControl
                                     ref={(e) => this.email = e}
                                     placeholder="Email" type="text"
@@ -53,7 +53,7 @@ class SignUp extends React.Component {
                                     isInvalid={!!errors.email} />
                                 <Errors.Field name="email" />
                             </FormGroup>
-                            <FormGroup>
+                            <FormGroup className="mb-3">
                                 <FormControl
                                     ref={(e) => this.username = e}
                                     placeholder="Username" type="text"
@@ -61,7 +61,7 @@ class SignUp extends React.Component {
                                     isInvalid={!!errors.username} />
                                 <Errors.Field name="username" />
                             </FormGroup>
-                            <FormGroup>
+                            <FormGroup className="mb-3">
                                 <FormControl
                                     ref={(e) => this.password = e}
                                     placeholder="Password" type="password"
@@ -69,7 +69,7 @@ class SignUp extends React.Component {
                                     isInvalid={!!errors.apssword} />
                                 <Errors.Field name="password" />
                             </FormGroup>
-                            <FormGroup>
+                            <FormGroup className="mb-3">
                                 <FormControl
                                     ref={(e) => this.confirmPassword = e}
                                     placeholder="Confirm Password"

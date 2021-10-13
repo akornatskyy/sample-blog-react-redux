@@ -24,7 +24,6 @@ class SearchPostsWell extends React.Component {
 
     render() {
         const {q, pending} = this.props;
-
         return (
             <Card bg="light" className="mb-3">
                 <Card.Body>
@@ -33,12 +32,10 @@ class SearchPostsWell extends React.Component {
                         <InputGroup>
                             <FormControl defaultValue={q}
                                 ref={(e) => this.q = e} />
-                            <InputGroup.Append>
-                                <Button disabled={pending}
-                                    variant="secondary" >
-                                    <i className="fa fa-search"></i>
-                                </Button>
-                            </InputGroup.Append>
+                            <Button disabled={pending}
+                                variant="secondary" >
+                                <i className="fa fa-search"></i>
+                            </Button>
                         </InputGroup>
                     </form>
                 </Card.Body>

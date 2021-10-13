@@ -43,14 +43,14 @@ class SignIn extends React.Component {
                     <Card.Body>
                         <form autoComplete="off"
                             onSubmit={!pending ? this.handleSubmit : undefined}>
-                            <FormGroup>
+                            <FormGroup className="mb-3">
                                 <FormControl ref={(e) => this.username = e}
                                     placeholder="Username" type="text"
                                     required
                                     isInvalid={!!errors.username} />
                                 <Errors.Field name="username" />
                             </FormGroup>
-                            <FormGroup>
+                            <FormGroup className="mb-3">
                                 <FormControl ref={(e) => this.password = e}
                                     placeholder="Password" type="password"
                                     required

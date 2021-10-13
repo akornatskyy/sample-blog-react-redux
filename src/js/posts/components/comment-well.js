@@ -65,7 +65,7 @@ class CommentWell extends React.Component {
                             onSubmit={
                                 !disabled ? this.handleSubmit : undefined
                             }>
-                            <FormGroup>
+                            <FormGroup className="mb-3">
                                 <FormControl as="textarea"rows="3"
                                     disabled={disabled}
                                     ref={(e) => this.message = e}
