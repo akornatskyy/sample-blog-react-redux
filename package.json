@@ -29,7 +29,7 @@
   },
   "homepage": "https://github.com/akornatskyy/sample-blog-react-redux",
   "dependencies": {
-    "connected-react-router": "^6.9.1",
+    "connected-react-router": "^6.9.2",
     "date-fns": "^2.26.0",
     "prop-types": "^15.7.2",
     "react": "^17.0.2",
