@@ -43,7 +43,7 @@
     "redux-thunk": "^2.4.2"
   },
   "devDependencies": {
-    "@babel/core": "^7.22.1",
+    "@babel/core": "^7.22.8",
     "@babel/eslint-parser": "^7.21.8",
     "@babel/preset-env": "^7.22.2",
     "@babel/preset-react": "^7.22.0",
